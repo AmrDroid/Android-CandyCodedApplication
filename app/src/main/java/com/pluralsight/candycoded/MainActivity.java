@@ -4,11 +4,14 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -79,9 +82,23 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        //if(item.getItemId()==R.id.info)
+        {
+                Intent infoIntent =new Intent(MainActivity.this,InfoActivity.class);
+                startActivity(infoIntent );
+            //    return true;
+        }
+       return         super.onOptionsItemSelected(item);
+    }
     // ***
     // TODO - Task 1 - Show Store Information Activity
     // ***
+
+
 
     private void addCandiesToDatabase(Candy[] candies) {
         SQLiteDatabase db = candyDbHelper.getWritableDatabase();
@@ -96,4 +113,6 @@ public class MainActivity extends AppCompatActivity {
             db.insert(CandyEntry.TABLE_NAME, null, values);
         }
     }
+
+
 }
